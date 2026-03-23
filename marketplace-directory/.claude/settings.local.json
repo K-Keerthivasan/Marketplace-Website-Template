@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find F:/Dev-Projects/Marketplace-Website-Template/marketplace-directory/node_modules/next/dist/docs/ -name *.md)",
+      "Bash(ls F:/Dev-Projects/Marketplace-Website-Template/marketplace-directory/src/app/\\\\\\(marketplace\\\\\\)/)",
+      "Bash(ls F:/Dev-Projects/Marketplace-Website-Template/marketplace-directory/src/app/\\\\\\(admin\\\\\\)/)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
