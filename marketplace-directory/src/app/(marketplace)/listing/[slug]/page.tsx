@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -25,8 +26,18 @@ export default async function ListingDetailPage({
   return (
     <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       {/* Hero */}
-      <section className={`overflow-hidden rounded-[36px] bg-gradient-to-br ${data.listing.heroClassName} p-8 text-white shadow-[0_32px_80px_rgba(49,46,129,0.24)] sm:p-10`}>
-        <div className="max-w-4xl">
+      <section className={`relative overflow-hidden rounded-[36px] bg-gradient-to-br ${data.listing.heroClassName} p-8 text-white shadow-[0_32px_80px_rgba(49,46,129,0.24)] sm:p-10`}>
+        <Image
+          src={data.listing.imageSrc}
+          alt={data.listing.imageAlt}
+          fill
+          priority
+          sizes="(min-width: 1024px) 80vw, 100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-950/50" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.18),_transparent_30%)]" />
+        <div className="relative max-w-4xl">
           <div className="flex flex-wrap gap-3">
             <Badge className="bg-white/15 text-white">{data.category?.name}</Badge>
             <Badge className="bg-white/15 text-white">{data.listing.heroBadge}</Badge>
@@ -103,7 +114,7 @@ export default async function ListingDetailPage({
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
                         <div className="font-semibold text-foreground">{review.title}</div>
-                        <div className="mt-1 text-sm text-muted-foreground">{review.reviewer} â€¢ {review.date}</div>
+                        <div className="mt-1 text-sm text-muted-foreground">{review.reviewer} • {review.date}</div>
                       </div>
                       <StarRating rating={review.rating} />
                     </div>

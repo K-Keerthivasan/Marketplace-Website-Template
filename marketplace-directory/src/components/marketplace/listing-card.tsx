@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 import { Badge } from "@/components/ui/badge"
@@ -19,6 +20,8 @@ type ListingCardProps = {
     priceLabel: string
     featured: boolean
     verified: boolean
+    imageSrc: string
+    imageAlt: string
     heroClassName: string
     heroBadge: string
   }
@@ -28,12 +31,20 @@ export function ListingCard({ listing }: ListingCardProps) {
   return (
     <Card className="overflow-hidden rounded-[28px] border border-border bg-card py-0 shadow-[0_18px_45px_rgba(15,23,42,0.08)] dark:shadow-none">
       <div className={`relative h-48 bg-gradient-to-br ${listing.heroClassName}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.36),_transparent_34%)]" />
+        <Image
+          src={listing.imageSrc}
+          alt={listing.imageAlt}
+          fill
+          sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-950/35" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.24),_transparent_34%)]" />
         <div className="absolute inset-x-5 top-5 flex items-center justify-between">
           <Badge className="bg-white/90 text-indigo-800">{listing.heroBadge}</Badge>
           {listing.verified ? <Badge className="bg-indigo-900/90 text-white">Verified</Badge> : null}
         </div>
-        <div className="absolute inset-x-5 bottom-5 rounded-[22px] border border-white/50 bg-white/82 p-4 backdrop-blur">
+        <div className="absolute inset-x-5 bottom-5 rounded-[22px] border border-white/25 bg-white/88 p-4 backdrop-blur">
           <div className="text-xs font-semibold uppercase tracking-[0.24em] text-indigo-700">{listing.locationLabel}</div>
           <div className="mt-1 text-lg font-semibold text-slate-950">{listing.name}</div>
           <div className="text-sm text-slate-600">{listing.neighborhood}</div>
